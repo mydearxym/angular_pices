@@ -1,27 +1,44 @@
-
-<html ng-app>
+<html>
 <head>
   <title>angular test</title>
   <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css">
 </head>
 
 <body>
-  <div class="container" ng-app="">
-    <h3 class="text-danger">angular test</h3>
+  <div class="container" ng-app="myApp">
+    <h3 class="text-info">angular test</h3>
 
-    Your name: <input type="text" ng-model="message" placeholder="World">
-    <h5 class="text-info">Hello {{message || 'nobody'}} !</h5>
+<!--     Your name: <input type="text" ng-model="data.message" placeholder="World">
+    <h5 class="text-danger">Hello {{data.message || 'nobody'}} !</h5>
     <hr>
-
+ -->
     <div ng-controller="firstCtrl">
-      Your name: <input type="text" ng-model="message" placeholder="World">
-      <h5 class="text-info">Hello {{message || 'nobody'}} !</h5>
+      Your name: <input type="text" ng-model="data.message">
+      <h5 class="text-danger">{{data.message || 'nobody'}} !</h5>
     </div>
 
-    <div ng-controller="firstCtrl">
-      Your name: <input type="text" ng-model="message" placeholder="World">
-      <h5 class="text-info">Hello {{message || 'nobody'}} !</h5>
+    <div ng-controller="secondCtrl">
+      Your name: <input type="text" ng-model="data.message">
+      <!-- <h5 class="text-danger">{{reversedMessage(data.message)}}</h5> -->
+      <h5 class="text-danger">{{data.message | reverse}}</h5>
     </div>
+  
+    <hr>
+    <div ng-controller="peopleCtrl">
+      <!-- controller 里的 ng-model 会自动关联到 People factory 吗？ -->
+      <input type="text" placeholder="Search" ng-model="searchText.name">
+      <table class="table table-striped table-hover table-condensed">
+        <tr ng-repeat="actor in people.cast | filter:searchText">
+          <td>{{actor.name}}</td>
+          <td>{{actor.character}}</td>
+        </tr>
+      </table>
+
+    </div>
+
+
+
+  </div>
 
 <script src="angular-1.2.8/angular.js"></script>
 <script src="main.js"></script>
